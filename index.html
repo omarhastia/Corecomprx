@@ -39,14 +39,31 @@
       gap: 20px;
       padding: 18px 0;
     }
+    .brand-wrap {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+    }
+    .brand-logo {
+      width: 56px;
+      height: 56px;
+      object-fit: contain;
+      border-radius: 14px;
+      background: #ffffff;
+      padding: 6px;
+      box-shadow: 0 4px 14px rgba(15,23,42,0.08);
+      flex: 0 0 auto;
+    }
     .brand {
       font-size: 28px;
       font-weight: 700;
       letter-spacing: -0.02em;
+      line-height: 1.05;
     }
     .brand-sub {
       font-size: 14px;
       color: #475569;
+      margin-top: 4px;
     }
     .nav-links {
       display: flex;
@@ -435,15 +452,24 @@
       .contact-left, .contact-right { padding: 24px; }
       .info-card, .step, .dark-panel { padding: 22px; }
       .contact-box-value { font-size: 24px; }
+      .brand-logo { width: 48px; height: 48px; }
+      .brand { font-size: 24px; }
     }
   </style>
 </head>
 <body>
   <header class="topbar">
     <div class="container nav">
-      <div>
-        <div class="brand">CoreComp Rx</div>
-        <div class="brand-sub">Workers' Compensation Pharmacy</div>
+      <div class="brand-wrap">
+        <img
+          src="corecomprx-logo.svg"
+          alt="CoreComp Rx logo"
+          class="brand-logo"
+        />
+        <div>
+          <div class="brand">CoreComp Rx</div>
+          <div class="brand-sub">Workers' Compensation Pharmacy</div>
+        </div>
       </div>
       <nav class="nav-links">
         <a href="#how-it-works">How It Works</a>
