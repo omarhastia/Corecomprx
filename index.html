@@ -4,64 +4,703 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>CoreComp Rx | Workers' Compensation Pharmacy</title>
+  <meta
+    name="description"
+    content="CoreComp Rx is a mail-order workers' compensation pharmacy offering fast delivery, no-cost shipping to patients, and direct phone support."
+  />
   <style>
-    body { margin:0; font-family:Arial; background:#f8fafc; color:#0f172a; }
-    .container { max-width:1100px; margin:auto; padding:20px; }
-    .nav { display:flex; justify-content:space-between; align-items:center; }
-    .logo { display:flex; align-items:center; gap:10px; }
-    .logo img { height:50px; }
-    .btn { background:#0f172a; color:#fff; padding:12px 20px; border-radius:10px; }
-    .hero { padding:60px 0; display:flex; gap:40px; }
-    .card { background:#fff; padding:20px; border-radius:20px; margin:10px 0; }
-    .dark { background:#0f172a; color:#fff; }
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      margin: 0;
+      font-family: Arial, Helvetica, sans-serif;
+      color: #0f172a;
+      background: #f8fafc;
+      line-height: 1.6;
+    }
+    a { text-decoration: none; color: inherit; }
+    .container {
+      width: 100%;
+      max-width: 1180px;
+      margin: 0 auto;
+      padding: 0 24px;
+    }
+    .topbar {
+      background: #ffffff;
+      border-bottom: 1px solid #e2e8f0;
+      position: sticky;
+      top: 0;
+      z-index: 50;
+    }
+    .nav {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 20px;
+      padding: 18px 0;
+    }
+    .brand {
+      font-size: 28px;
+      font-weight: 700;
+      letter-spacing: -0.02em;
+    }
+    .brand-sub {
+      font-size: 14px;
+      color: #475569;
+    }
+    .nav-links {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      align-items: center;
+    }
+    .nav-links a {
+      padding: 10px 14px;
+      border-radius: 999px;
+      color: #334155;
+      font-size: 14px;
+    }
+    .nav-links a:hover { background: #f1f5f9; }
+    .nav-links .btn-dark {
+      background: #0f172a;
+      color: #ffffff;
+      font-weight: 700;
+    }
+
+    .hero {
+      background:
+        radial-gradient(circle at top right, rgba(59,130,246,0.12), transparent 30%),
+        radial-gradient(circle at left, rgba(14,165,233,0.10), transparent 28%),
+        #ffffff;
+      border-bottom: 1px solid #e2e8f0;
+    }
+    .hero-grid {
+      display: grid;
+      grid-template-columns: 1.15fr 0.85fr;
+      gap: 40px;
+      align-items: center;
+      padding: 64px 0 72px;
+    }
+    .badge {
+      display: inline-block;
+      background: #eff6ff;
+      border: 1px solid #bfdbfe;
+      color: #0369a1;
+      padding: 10px 16px;
+      border-radius: 999px;
+      font-size: 14px;
+      font-weight: 700;
+      margin-bottom: 18px;
+    }
+    h1 {
+      font-size: 54px;
+      line-height: 1.05;
+      margin: 0 0 20px;
+      letter-spacing: -0.03em;
+    }
+    .hero p {
+      font-size: 19px;
+      color: #475569;
+      margin: 0 0 28px;
+      max-width: 720px;
+    }
+    .button-row {
+      display: flex;
+      gap: 14px;
+      flex-wrap: wrap;
+      margin-bottom: 28px;
+    }
+    .btn {
+      display: inline-block;
+      padding: 15px 22px;
+      border-radius: 18px;
+      font-weight: 700;
+      font-size: 16px;
+    }
+    .btn-primary {
+      background: #0f172a;
+      color: #ffffff;
+    }
+    .btn-secondary {
+      background: #ffffff;
+      color: #0f172a;
+      border: 1px solid #cbd5e1;
+    }
+
+    .stat-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 16px;
+      margin-top: 10px;
+    }
+    .card, .info-card {
+      background: #ffffff;
+      border: 1px solid #e2e8f0;
+      border-radius: 26px;
+      box-shadow: 0 8px 24px rgba(15,23,42,0.05);
+    }
+    .stat-card {
+      padding: 22px;
+    }
+    .stat-number {
+      font-size: 34px;
+      font-weight: 700;
+      margin-bottom: 4px;
+    }
+    .stat-label {
+      color: #475569;
+      font-size: 14px;
+    }
+
+    .dark-panel {
+      background: #0f172a;
+      color: #ffffff;
+      border-radius: 30px;
+      padding: 28px;
+      box-shadow: 0 20px 40px rgba(15,23,42,0.12);
+    }
+    .dark-panel h3 {
+      margin-top: 0;
+      font-size: 15px;
+      text-transform: uppercase;
+      letter-spacing: 0.18em;
+      color: #7dd3fc;
+    }
+    .dark-panel ul {
+      margin: 18px 0 0;
+      padding: 0;
+      list-style: none;
+    }
+    .dark-panel li {
+      display: flex;
+      gap: 12px;
+      margin-bottom: 14px;
+      color: #e2e8f0;
+      font-size: 15px;
+    }
+    .dot {
+      width: 10px;
+      height: 10px;
+      background: #38bdf8;
+      border-radius: 50%;
+      margin-top: 8px;
+      flex: 0 0 auto;
+    }
+    .support-box {
+      margin-top: 18px;
+      background: #e0f2fe;
+      color: #0f172a;
+      border-radius: 22px;
+      padding: 22px;
+    }
+    .support-box strong { display: block; margin-bottom: 8px; }
+
+    section {
+      padding: 76px 0;
+    }
+    .section-title {
+      margin-bottom: 18px;
+      color: #0369a1;
+      text-transform: uppercase;
+      letter-spacing: 0.18em;
+      font-size: 13px;
+      font-weight: 700;
+    }
+    h2 {
+      margin: 0 0 16px;
+      font-size: 40px;
+      line-height: 1.12;
+      letter-spacing: -0.02em;
+    }
+    .section-copy {
+      color: #475569;
+      font-size: 18px;
+      max-width: 760px;
+    }
+
+    .grid-3 {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 22px;
+      margin-top: 34px;
+    }
+    .info-card {
+      padding: 30px;
+    }
+    .info-card h3 {
+      margin: 0 0 12px;
+      font-size: 24px;
+    }
+    .info-card p {
+      margin: 0;
+      color: #475569;
+    }
+
+    .how-section {
+      background: #ffffff;
+      border-top: 1px solid #e2e8f0;
+      border-bottom: 1px solid #e2e8f0;
+    }
+    .how-grid {
+      display: grid;
+      grid-template-columns: 0.9fr 1.1fr;
+      gap: 36px;
+      align-items: start;
+    }
+    .steps {
+      display: grid;
+      gap: 18px;
+    }
+    .step {
+      background: #f8fafc;
+      border: 1px solid #e2e8f0;
+      border-radius: 28px;
+      padding: 24px;
+    }
+    .step-row {
+      display: flex;
+      gap: 16px;
+      align-items: flex-start;
+    }
+    .step-num {
+      width: 48px;
+      height: 48px;
+      border-radius: 16px;
+      background: #0f172a;
+      color: #ffffff;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 700;
+      font-size: 18px;
+      flex: 0 0 auto;
+    }
+    .step h3 {
+      margin: 0 0 6px;
+      font-size: 22px;
+    }
+    .step p {
+      margin: 0;
+      color: #475569;
+    }
+
+    .feature-band .grid-3 .info-card:first-child {
+      background: #0f172a;
+      color: #ffffff;
+    }
+    .feature-band .grid-3 .info-card:first-child p,
+    .feature-band .grid-3 .info-card:first-child .mini-label {
+      color: #cbd5e1;
+    }
+    .mini-label {
+      color: #0369a1;
+      text-transform: uppercase;
+      letter-spacing: 0.18em;
+      font-size: 13px;
+      font-weight: 700;
+      margin-bottom: 10px;
+    }
+
+    .faq-wrap {
+      max-width: 920px;
+      margin: 0 auto;
+    }
+    details {
+      background: #f8fafc;
+      border: 1px solid #e2e8f0;
+      border-radius: 22px;
+      padding: 22px 24px;
+      margin-top: 14px;
+    }
+    summary {
+      cursor: pointer;
+      font-weight: 700;
+      font-size: 20px;
+      list-style: none;
+    }
+    details p {
+      margin: 12px 0 0;
+      color: #475569;
+    }
+
+    .contact-shell {
+      overflow: hidden;
+      background: #ffffff;
+      border: 1px solid #e2e8f0;
+      border-radius: 32px;
+      box-shadow: 0 20px 40px rgba(15,23,42,0.08);
+    }
+    .contact-grid {
+      display: grid;
+      grid-template-columns: 1.05fr 0.95fr;
+    }
+    .contact-left {
+      background: #0f172a;
+      color: #ffffff;
+      padding: 42px;
+    }
+    .contact-left p {
+      color: #cbd5e1;
+      max-width: 700px;
+    }
+    .contact-box-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 16px;
+      margin-top: 26px;
+    }
+    .contact-box, .contact-box-full {
+      background: rgba(255,255,255,0.05);
+      border: 1px solid rgba(255,255,255,0.10);
+      border-radius: 22px;
+      padding: 22px;
+      display: block;
+    }
+    .contact-box-label {
+      color: #7dd3fc;
+      text-transform: uppercase;
+      letter-spacing: 0.18em;
+      font-size: 12px;
+      font-weight: 700;
+      margin-bottom: 8px;
+    }
+    .contact-box-value {
+      font-size: 30px;
+      font-weight: 700;
+      line-height: 1.15;
+    }
+    .contact-box-note {
+      color: #cbd5e1;
+      font-size: 14px;
+      margin-top: 6px;
+    }
+    .contact-box-full {
+      margin-top: 16px;
+    }
+
+    .contact-right {
+      background: #f8fafc;
+      padding: 42px;
+    }
+    .contact-right .info-card {
+      padding: 30px;
+    }
+    .bullet {
+      display: flex;
+      gap: 12px;
+      margin: 0 0 14px;
+      color: #475569;
+    }
+    .contact-cta-row {
+      display: flex;
+      gap: 12px;
+      flex-wrap: wrap;
+      margin-top: 24px;
+    }
+    .btn-blue {
+      background: #0284c7;
+      color: #ffffff;
+    }
+
+    footer {
+      padding: 24px 0 40px;
+      color: #64748b;
+      font-size: 14px;
+      text-align: center;
+    }
+
+    @media (max-width: 980px) {
+      .hero-grid,
+      .how-grid,
+      .contact-grid,
+      .grid-3 {
+        grid-template-columns: 1fr;
+      }
+      .stat-grid,
+      .contact-box-grid {
+        grid-template-columns: 1fr;
+      }
+      h1 { font-size: 40px; }
+      h2 { font-size: 32px; }
+      .nav {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+    }
+
+    @media (max-width: 640px) {
+      .container { padding: 0 18px; }
+      .hero-grid { padding: 42px 0 52px; }
+      section { padding: 56px 0; }
+      .contact-left, .contact-right { padding: 24px; }
+      .info-card, .step, .dark-panel { padding: 22px; }
+      .contact-box-value { font-size: 24px; }
+    }
   </style>
 </head>
 <body>
-
-<div class="container nav">
-  <div class="logo">
-    <img src="/corecomprx-logo.svg" />
-    <div>
-      <b>CoreComp Rx</b><br/>
-      <small>Workers' Compensation Pharmacy</small>
+  <header class="topbar">
+    <div class="container nav">
+      <div>
+        <div class="brand">CoreComp Rx</div>
+        <div class="brand-sub">Workers' Compensation Pharmacy</div>
+      </div>
+      <nav class="nav-links">
+        <a href="#how-it-works">How It Works</a>
+        <a href="#who-we-help">Who We Help</a>
+        <a href="#faq">FAQ</a>
+        <a href="#contact" class="btn-dark">Contact Us</a>
+      </nav>
     </div>
-  </div>
-  <a href="#contact" class="btn">Contact Us</a>
-</div>
+  </header>
 
-<div class="container hero">
-  <div>
-    <h1>Fast workers' comp prescriptions delivered to your door</h1>
-    <p>48-hour delivery. No cost to patient. We call to confirm address before shipping.</p>
-    <a href="#contact" class="btn">Call Now</a>
-  </div>
-  <div class="card dark">
-    <ul>
-      <li>48-hour delivery</li>
-      <li>No cost to patient</li>
-      <li>Mail-order pharmacy</li>
-      <li>We call to confirm address</li>
-    </ul>
-  </div>
-</div>
+  <main>
+    <section class="hero">
+      <div class="container hero-grid">
+        <div>
+          <div class="badge">Mail-order workers' compensation pharmacy</div>
+          <h1>Fast, reliable workers' comp prescriptions delivered to the patient's door.</h1>
+          <p>
+            CoreComp Rx helps injured workers receive prescribed medications by mail,
+            with delivery within 48 hours, no delivery cost to the patient, and a
+            confirmation call to verify the shipping address before medications are sent.
+          </p>
+          <div class="button-row">
+            <a class="btn btn-primary" href="#contact">Contact Us</a>
+            <a class="btn btn-secondary" href="#how-it-works">See How It Works</a>
+          </div>
 
-<div class="container">
-  <h2>How It Works</h2>
-  <div class="card">1. Prescription sent</div>
-  <div class="card">2. We call patient</div>
-  <div class="card">3. Ship within 48 hrs</div>
-  <div class="card">4. Delivered free</div>
-</div>
+          <div class="stat-grid">
+            <div class="card stat-card">
+              <div class="stat-number">48 hrs</div>
+              <div class="stat-label">Medication delivery target</div>
+            </div>
+            <div class="card stat-card">
+              <div class="stat-number">$0</div>
+              <div class="stat-label">Delivery cost to patient</div>
+            </div>
+            <div class="card stat-card">
+              <div class="stat-number">1:1</div>
+              <div class="stat-label">Address confirmation call</div>
+            </div>
+          </div>
+        </div>
 
-<div class="container" id="contact">
-  <h2>Contact</h2>
-  <div class="card">
-    <b>Phone:</b> 445-300-7010<br/>
-    <b>Fax:</b> 445-300-7060<br/>
-    <b>NPI:</b> 1407796352<br/>
-    <b>Address:</b> 390 Lincoln Ave Ste B3, Hatboro, PA 19040
-  </div>
-</div>
+        <div>
+          <div class="dark-panel">
+            <h3>Why patients choose CoreComp Rx</h3>
+            <ul>
+              <li><span class="dot"></span><span>Mail-order workers' compensation pharmacy</span></li>
+              <li><span class="dot"></span><span>Medication delivery within 48 hours</span></li>
+              <li><span class="dot"></span><span>No-cost delivery to the patient</span></li>
+              <li><span class="dot"></span><span>Address confirmation call before shipment</span></li>
+              <li><span class="dot"></span><span>Clear support for patients and prescribers</span></li>
+              <li><span class="dot"></span><span>Built for convenience and continuity of care</span></li>
+            </ul>
+          </div>
 
+          <div class="support-box">
+            <strong>Patient-first support</strong>
+            We do more than ship prescriptions. We contact patients directly, confirm delivery details, and help keep medication access simple during recovery.
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="who-we-help">
+      <div class="container">
+        <div class="section-title">Who we help</div>
+        <h2>Built for the workers' compensation journey</h2>
+        <p class="section-copy">
+          CoreComp Rx supports injured workers and the professionals helping them recover,
+          with a pharmacy experience designed around convenience, communication, and speed.
+        </p>
+
+        <div class="grid-3">
+          <div class="info-card">
+            <h3>Injured Workers</h3>
+            <p>Simple mail-order prescription service with direct phone support, home delivery, and no out-of-pocket shipping cost.</p>
+          </div>
+          <div class="info-card">
+            <h3>Providers</h3>
+            <p>Fast communication, reliable fulfillment, and clear service to help keep treatment plans on track.</p>
+          </div>
+          <div class="info-card">
+            <h3>Attorneys &amp; Case Managers</h3>
+            <p>A dependable pharmacy partner focused on smooth coordination, timely delivery, and patient follow-through.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="how-it-works" class="how-section">
+      <div class="container how-grid">
+        <div>
+          <div class="section-title">How it works</div>
+          <h2>A simple process for a difficult time</h2>
+          <p class="section-copy">
+            We keep fulfillment straightforward so patients can focus on recovery and providers can stay focused on care.
+          </p>
+        </div>
+
+        <div class="steps">
+          <div class="step">
+            <div class="step-row">
+              <div class="step-num">1</div>
+              <div>
+                <h3>We receive the prescription</h3>
+                <p>Your provider sends us the prescription and workers' compensation information.</p>
+              </div>
+            </div>
+          </div>
+
+          <div class="step">
+            <div class="step-row">
+              <div class="step-num">2</div>
+              <div>
+                <h3>We call to confirm details</h3>
+                <p>Our team contacts the patient to verify the delivery address and coordinate shipment.</p>
+              </div>
+            </div>
+          </div>
+
+          <div class="step">
+            <div class="step-row">
+              <div class="step-num">3</div>
+              <div>
+                <h3>Medications ship fast</h3>
+                <p>Prescriptions are processed promptly and delivered within 48 hours whenever eligible and approved.</p>
+              </div>
+            </div>
+          </div>
+
+          <div class="step">
+            <div class="step-row">
+              <div class="step-num">4</div>
+              <div>
+                <h3>Delivery at no cost to the patient</h3>
+                <p>Patients receive their medications by mail with no delivery charge.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="feature-band">
+      <div class="container">
+        <div class="grid-3">
+          <div class="info-card">
+            <div class="mini-label">Fast delivery</div>
+            <h3>Within 48 hours</h3>
+            <p>Designed to set expectations clearly for patients, providers, and referral partners.</p>
+          </div>
+          <div class="info-card">
+            <div class="mini-label">No-cost shipping</div>
+            <h3>Delivered free</h3>
+            <p>Patients do not pay for medication delivery, making access easier during recovery.</p>
+          </div>
+          <div class="info-card">
+            <div class="mini-label">Real patient contact</div>
+            <h3>Address verified</h3>
+            <p>We call patients directly to confirm shipping details before the order goes out.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="faq" style="background:#ffffff;border-top:1px solid #e2e8f0;">
+      <div class="container faq-wrap">
+        <div class="section-title" style="text-align:center;">FAQ</div>
+        <h2 style="text-align:center;">Common questions</h2>
+
+        <details>
+          <summary>How fast will patients receive medication?</summary>
+          <p>CoreComp Rx is positioned as a fast mail-order workers' compensation pharmacy, with medication delivery within 48 hours for eligible prescriptions after processing and confirmation.</p>
+        </details>
+
+        <details>
+          <summary>Does the patient pay for delivery?</summary>
+          <p>No. Delivery is provided at no cost to the patient.</p>
+        </details>
+
+        <details>
+          <summary>How do you confirm the shipping address?</summary>
+          <p>Our team calls the patient directly to confirm the address before medications are sent.</p>
+        </details>
+
+        <details>
+          <summary>Who can refer a prescription?</summary>
+          <p>Providers and care teams can submit prescriptions for workers' compensation patients who need dependable home delivery.</p>
+        </details>
+      </div>
+    </section>
+
+    <section id="contact">
+      <div class="container">
+        <div class="contact-shell">
+          <div class="contact-grid">
+            <div class="contact-left">
+              <div class="section-title" style="color:#7dd3fc;">Contact us</div>
+              <h2>Speak with our team about workers' comp prescription delivery</h2>
+              <p>
+                CoreComp Rx is a mail-order workers' compensation pharmacy focused on fast service,
+                clear communication, and no-cost delivery to the patient. Call or fax us to get in touch.
+              </p>
+
+              <div class="contact-box-grid">
+                <a class="contact-box" href="tel:4453007010">
+                  <div class="contact-box-label">Phone</div>
+                  <div class="contact-box-value">445-300-7010</div>
+                  <div class="contact-box-note">Call our team directly</div>
+                </a>
+
+                <div class="contact-box">
+                  <div class="contact-box-label">Fax</div>
+                  <div class="contact-box-value">445-300-7060</div>
+                  <div class="contact-box-note">Send prescriptions and documents</div>
+                </div>
+              </div>
+
+              <div class="contact-box-full">
+                <div class="contact-box-label">NPI Number</div>
+                <div class="contact-box-value">1407796352</div>
+                <div class="contact-box-note">National Provider Identifier</div>
+              </div>
+
+              <div class="contact-box-full">
+                <div class="contact-box-label">Address</div>
+                <div class="contact-box-value" style="font-size:24px;">390 Lincoln Ave Ste B3</div>
+                <div class="contact-box-note">Hatboro, PA 19040</div>
+                <div class="contact-box-note">United States</div>
+              </div>
+            </div>
+
+            <div class="contact-right">
+              <div class="info-card">
+                <div class="section-title" style="margin-bottom:16px;">Why contact CoreComp Rx</div>
+
+                <div class="bullet"><span class="dot"></span><span>Mail-order workers' compensation pharmacy service built around convenience.</span></div>
+                <div class="bullet"><span class="dot"></span><span>Medication delivery within 48 hours for eligible prescriptions after processing.</span></div>
+                <div class="bullet"><span class="dot"></span><span>No delivery cost to the patient.</span></div>
+                <div class="bullet"><span class="dot"></span><span>Patients receive a call to confirm their address before shipment.</span></div>
+
+                <div class="contact-cta-row">
+                  <a class="btn btn-blue" href="tel:4453007010">Call 445-300-7010</a>
+                  <a class="btn btn-secondary" href="#how-it-works">Learn How It Works</a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="container">
+      © 2026 CoreComp Rx. All rights reserved.
+    </div>
+  </footer>
 </body>
 </html>
