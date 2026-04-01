@@ -1,112 +1,350 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Hello Landing Page</title>
+xport default function CoreCompRxLandingPage() {
+  const audienceCards = [
+    {
+      title: "Injured Workers",
+      description:
+        "Simple mail-order prescription service with direct phone support, home delivery, and no out-of-pocket shipping cost.",
+    },
+    {
+      title: "Providers",
+      description:
+        "Fast referral intake, reliable fulfillment, and clear communication to help keep treatment plans on track.",
+    },
+    {
+      title: "Attorneys & Case Managers",
+      description:
+        "A dependable pharmacy partner focused on smooth coordination, timely delivery, and patient follow-through.",
+    },
+  ];
 
-  <style>
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-      font-family: Arial, sans-serif;
-    }
+  const steps = [
+    {
+      step: "1",
+      title: "We receive the prescription",
+      description:
+        "Your provider sends us the prescription and workers' compensation information.",
+    },
+    {
+      step: "2",
+      title: "We call to confirm details",
+      description:
+        "Our team contacts the patient to verify the delivery address and coordinate shipment.",
+    },
+    {
+      step: "3",
+      title: "Medications ship fast",
+      description:
+        "Prescriptions are processed promptly and delivered within 48 hours whenever eligible and approved.",
+    },
+    {
+      step: "4",
+      title: "Delivery at no cost to the patient",
+      description:
+        "Patients receive their medications by mail with no delivery charge.",
+    },
+  ];
 
-    body {
-      display: flex;
-      flex-direction: column;
-      min-height: 100vh;
-      background: #0f172a;
-      color: #ffffff;
-    }
+  const highlights = [
+    "Mail-order workers' compensation pharmacy",
+    "Medication delivery within 48 hours",
+    "No-cost delivery to the patient",
+    "Address confirmation call before shipment",
+    "Clear support for patients and prescribers",
+    "Built for convenience and continuity of care",
+  ];
 
-    header {
-      padding: 20px 40px;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      background: #020617;
-    }
+  const faqs = [
+    {
+      q: "How fast will patients receive medication?",
+      a: "We position CoreComp Rx as a fast mail-order workers' compensation pharmacy, with medication delivery within 48 hours for eligible prescriptions after processing and confirmation.",
+    },
+    {
+      q: "Does the patient pay for delivery?",
+      a: "No. Delivery is provided at no cost to the patient.",
+    },
+    {
+      q: "How do you confirm the shipping address?",
+      a: "Our team calls the patient directly to confirm the address before medications are sent.",
+    },
+    {
+      q: "Who can refer a prescription?",
+      a: "Providers and care teams can submit prescriptions for workers' compensation patients who need dependable home delivery.",
+    },
+  ];
 
-    header h1 {
-      font-size: 20px;
-    }
+  return (
+    <div className="min-h-screen bg-slate-50 text-slate-900">
+      <section className="relative overflow-hidden border-b border-slate-200 bg-white">
+        <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_right,rgba(59,130,246,0.12),transparent_35%),radial-gradient(circle_at_left,rgba(14,165,233,0.08),transparent_30%)]" />
+        <div className="relative mx-auto max-w-7xl px-6 py-6 lg:px-8">
+          <header className="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
+            <div>
+              <div className="text-2xl font-bold tracking-tight">CoreComp Rx</div>
+              <div className="text-sm text-slate-600">Workers' Compensation Pharmacy</div>
+            </div>
+            <nav className="flex flex-wrap gap-3 text-sm text-slate-600">
+              <a href="#how-it-works" className="rounded-full px-3 py-2 hover:bg-slate-100">How It Works</a>
+              <a href="#who-we-help" className="rounded-full px-3 py-2 hover:bg-slate-100">Who We Help</a>
+              <a href="#faq" className="rounded-full px-3 py-2 hover:bg-slate-100">FAQ</a>
+              <a href="#contact" className="rounded-full bg-slate-900 px-4 py-2 font-medium text-white shadow-sm">Contact Us</a>
+            </nav>
+          </header>
 
-    nav a {
-      margin-left: 20px;
-      text-decoration: none;
-      color: #94a3b8;
-    }
+          <div className="grid gap-10 py-16 lg:grid-cols-[1.1fr_0.9fr] lg:items-center lg:py-24">
+            <div>
+              <div className="mb-4 inline-flex rounded-full border border-sky-200 bg-sky-50 px-4 py-2 text-sm font-medium text-sky-700">
+                Mail-order workers' compensation pharmacy
+              </div>
+              <h1 className="max-w-3xl text-4xl font-semibold tracking-tight sm:text-5xl lg:text-6xl">
+                Fast, reliable workers' comp prescriptions delivered to the patient's door.
+              </h1>
+              <p className="mt-6 max-w-2xl text-lg leading-8 text-slate-600">
+                CoreComp Rx helps injured workers receive prescribed medications by mail,
+                with delivery within 48 hours, no delivery cost to the patient, and a
+                confirmation call to verify the shipping address before medications are sent.
+              </p>
+              <div className="mt-8 flex flex-col gap-3 sm:flex-row">
+                <a
+                  href="#contact"
+                  className="rounded-2xl bg-slate-900 px-6 py-4 text-center text-base font-semibold text-white shadow-lg shadow-slate-300 transition hover:-translate-y-0.5"
+                >
+                  Contact Us
+                </a>
+                <a
+                  href="#how-it-works"
+                  className="rounded-2xl border border-slate-300 bg-white px-6 py-4 text-center text-base font-semibold text-slate-900 shadow-sm transition hover:-translate-y-0.5"
+                >
+                  See How It Works
+                </a>
+              </div>
+              <div className="mt-10 grid gap-4 sm:grid-cols-3">
+                <div className="rounded-2xl border border-slate-200 bg-white p-5 shadow-sm">
+                  <div className="text-3xl font-semibold">48 hrs</div>
+                  <div className="mt-1 text-sm text-slate-600">Medication delivery target</div>
+                </div>
+                <div className="rounded-2xl border border-slate-200 bg-white p-5 shadow-sm">
+                  <div className="text-3xl font-semibold">$0</div>
+                  <div className="mt-1 text-sm text-slate-600">Delivery cost to patient</div>
+                </div>
+                <div className="rounded-2xl border border-slate-200 bg-white p-5 shadow-sm">
+                  <div className="text-3xl font-semibold">1:1</div>
+                  <div className="mt-1 text-sm text-slate-600">Address confirmation call</div>
+                </div>
+              </div>
+            </div>
 
-    nav a:hover {
-      color: #ffffff;
-    }
+            <div className="rounded-[2rem] border border-slate-200 bg-white p-6 shadow-2xl shadow-slate-200">
+              <div className="rounded-[1.5rem] bg-slate-900 p-6 text-white">
+                <div className="text-sm font-medium uppercase tracking-[0.2em] text-sky-300">
+                  Why patients choose CoreComp Rx
+                </div>
+                <ul className="mt-6 space-y-4">
+                  {highlights.map((item) => (
+                    <li key={item} className="flex gap-3 text-sm leading-6 text-slate-200">
+                      <span className="mt-1 h-2.5 w-2.5 rounded-full bg-sky-400" />
+                      <span>{item}</span>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+              <div className="mt-5 rounded-[1.5rem] bg-sky-50 p-6">
+                <div className="text-sm font-semibold text-sky-800">Patient-first support</div>
+                <p className="mt-2 text-sm leading-6 text-slate-700">
+                  We do more than ship prescriptions. We contact patients directly,
+                  confirm delivery details, and help keep medication access simple during recovery.
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
 
-    .hero {
-      flex: 1;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      text-align: center;
-      padding: 40px;
-    }
+      <section id="who-we-help" className="mx-auto max-w-7xl px-6 py-20 lg:px-8">
+        <div className="max-w-2xl">
+          <div className="text-sm font-semibold uppercase tracking-[0.2em] text-sky-700">Who we help</div>
+          <h2 className="mt-3 text-3xl font-semibold tracking-tight sm:text-4xl">
+            Built for the workers' compensation journey
+          </h2>
+          <p className="mt-4 text-lg text-slate-600">
+            CoreComp Rx supports injured workers and the professionals helping them recover,
+            with a pharmacy experience designed around convenience, communication, and speed.
+          </p>
+        </div>
+        <div className="mt-10 grid gap-6 lg:grid-cols-3">
+          {audienceCards.map((card) => (
+            <div key={card.title} className="rounded-[2rem] border border-slate-200 bg-white p-8 shadow-sm">
+              <div className="text-xl font-semibold">{card.title}</div>
+              <p className="mt-4 text-base leading-7 text-slate-600">{card.description}</p>
+            </div>
+          ))}
+        </div>
+      </section>
 
-    .hero h2 {
-      font-size: 48px;
-      margin-bottom: 10px;
-    }
+      <section id="how-it-works" className="border-y border-slate-200 bg-white">
+        <div className="mx-auto max-w-7xl px-6 py-20 lg:px-8">
+          <div className="grid gap-10 lg:grid-cols-[0.85fr_1.15fr] lg:items-start">
+            <div>
+              <div className="text-sm font-semibold uppercase tracking-[0.2em] text-sky-700">How it works</div>
+              <h2 className="mt-3 text-3xl font-semibold tracking-tight sm:text-4xl">
+                A simple process for a difficult time
+              </h2>
+              <p className="mt-4 text-lg leading-8 text-slate-600">
+                We keep fulfillment straightforward so patients can focus on recovery and providers can stay focused on care.
+              </p>
+            </div>
+            <div className="grid gap-5">
+              {steps.map((item) => (
+                <div key={item.step} className="rounded-[2rem] border border-slate-200 bg-slate-50 p-6 shadow-sm">
+                  <div className="flex items-start gap-4">
+                    <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-2xl bg-slate-900 text-lg font-semibold text-white">
+                      {item.step}
+                    </div>
+                    <div>
+                      <div className="text-xl font-semibold">{item.title}</div>
+                      <p className="mt-2 text-base leading-7 text-slate-600">{item.description}</p>
+                    </div>
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
+        </div>
+      </section>
 
-    .hero p {
-      font-size: 18px;
-      color: #94a3b8;
-      margin-bottom: 20px;
-    }
+      <section className="mx-auto max-w-7xl px-6 py-20 lg:px-8">
+        <div className="grid gap-6 lg:grid-cols-3">
+          <div className="rounded-[2rem] bg-slate-900 p-8 text-white shadow-xl">
+            <div className="text-sm uppercase tracking-[0.2em] text-sky-300">Fast delivery</div>
+            <div className="mt-3 text-3xl font-semibold">Within 48 hours</div>
+            <p className="mt-4 text-sm leading-7 text-slate-300">
+              Designed to set expectations clearly for patients, providers, and referral partners.
+            </p>
+          </div>
+          <div className="rounded-[2rem] bg-white p-8 shadow-sm ring-1 ring-slate-200">
+            <div className="text-sm uppercase tracking-[0.2em] text-sky-700">No-cost shipping</div>
+            <div className="mt-3 text-3xl font-semibold text-slate-900">Delivered free</div>
+            <p className="mt-4 text-sm leading-7 text-slate-600">
+              Patients do not pay for medication delivery, making access easier during recovery.
+            </p>
+          </div>
+          <div className="rounded-[2rem] bg-white p-8 shadow-sm ring-1 ring-slate-200">
+            <div className="text-sm uppercase tracking-[0.2em] text-sky-700">Real patient contact</div>
+            <div className="mt-3 text-3xl font-semibold text-slate-900">Address verified</div>
+            <p className="mt-4 text-sm leading-7 text-slate-600">
+              We call patients directly to confirm shipping details before the order goes out.
+            </p>
+          </div>
+        </div>
+      </section>
 
-    .btn {
-      padding: 12px 24px;
-      background: #3b82f6;
-      color: white;
-      border: none;
-      border-radius: 6px;
-      cursor: pointer;
-      font-size: 16px;
-    }
+      <section id="faq" className="border-t border-slate-200 bg-white">
+        <div className="mx-auto max-w-5xl px-6 py-20 lg:px-8">
+          <div className="text-center">
+            <div className="text-sm font-semibold uppercase tracking-[0.2em] text-sky-700">FAQ</div>
+            <h2 className="mt-3 text-3xl font-semibold tracking-tight sm:text-4xl">
+              Common questions
+            </h2>
+          </div>
+          <div className="mt-12 space-y-4">
+            {faqs.map((faq) => (
+              <details key={faq.q} className="group rounded-[1.5rem] border border-slate-200 bg-slate-50 p-6 shadow-sm">
+                <summary className="cursor-pointer list-none text-lg font-semibold text-slate-900">
+                  {faq.q}
+                </summary>
+                <p className="mt-3 text-base leading-7 text-slate-600">{faq.a}</p>
+              </details>
+            ))}
+          </div>
+        </div>
+      </section>
 
-    .btn:hover {
-      background: #2563eb;
-    }
+      <section id="contact" className="mx-auto max-w-7xl px-6 py-20 lg:px-8">
+        <div className="overflow-hidden rounded-[2rem] border border-slate-200 bg-white shadow-2xl shadow-slate-200">
+          <div className="grid gap-0 lg:grid-cols-[1.05fr_0.95fr]">
+            <div className="bg-slate-900 p-8 text-white lg:p-12">
+              <div className="text-sm font-semibold uppercase tracking-[0.2em] text-sky-300">Contact us</div>
+              <h2 className="mt-3 text-3xl font-semibold tracking-tight sm:text-4xl">
+                Speak with our team about workers' comp prescription delivery
+              </h2>
+              <p className="mt-4 max-w-2xl text-base leading-7 text-slate-300">
+                CoreComp Rx is a mail-order workers' compensation pharmacy focused on fast service,
+                clear communication, and no-cost delivery to the patient. Call or fax us to get in touch.
+              </p>
 
-    footer {
-      text-align: center;
-      padding: 20px;
-      background: #020617;
-      color: #64748b;
-    }
-  </style>
-</head>
-<body>
+              <div className="mt-8 grid gap-4 sm:grid-cols-2">
+                <a
+                  href="tel:4453007010"
+                  className="rounded-[1.5rem] border border-white/10 bg-white/5 p-5 transition hover:bg-white/10"
+                >
+                  <div className="text-sm uppercase tracking-[0.18em] text-sky-300">Phone</div>
+                  <div className="mt-2 text-2xl font-semibold text-white">445-300-7010</div>
+                  <div className="mt-1 text-sm text-slate-300">Call our team directly</div>
+                </a>
+                <a
+                  href="fax:4453007060"
+                  className="rounded-[1.5rem] border border-white/10 bg-white/5 p-5 transition hover:bg-white/10"
+                >
+                  <div className="text-sm uppercase tracking-[0.18em] text-sky-300">Fax</div>
+                  <div className="mt-2 text-2xl font-semibold text-white">445-300-7060</div>
+                  <div className="mt-1 text-sm text-slate-300">Send prescriptions and documents</div>
+                </a>
+              </div>
 
-  <header>
-    <h1>MySite</h1>
-    <nav>
-      <a href="#">Home</a>
-      <a href="#">About</a>
-      <a href="#">Contact</a>
-    </nav>
-  </header>
+              <div className="mt-6 rounded-[1.5rem] border border-white/10 bg-white/5 p-5">
+                <div className="text-sm uppercase tracking-[0.18em] text-sky-300">NPI Number</div>
+                <div className="mt-2 text-2xl font-semibold text-white">1407796352</div>
+                <div className="mt-1 text-sm text-slate-300">National Provider Identifier</div>
+              </div>
 
-  <section class="hero">
-    <div>
-      <h2>Hello 👋</h2>
-      <p>This is a simple landing page example.</p>
-      <button class="btn">Get Started</button>
+              <div className="mt-4 rounded-[1.5rem] border border-white/10 bg-white/5 p-5">
+                <div className="text-sm uppercase tracking-[0.18em] text-sky-300">Address</div>
+                <div className="mt-2 text-lg font-semibold text-white">390 Lincoln Ave Ste B3</div>
+                <div className="text-sm text-slate-300">Hatboro, PA 19040</div>
+                <div className="text-sm text-slate-300">United States</div>
+              </div>
+            </div>
+
+            <div className="bg-slate-50 p-8 lg:p-12">
+              <div className="rounded-[1.75rem] border border-slate-200 bg-white p-8 shadow-sm">
+                <div className="text-sm font-semibold uppercase tracking-[0.18em] text-sky-700">Why contact CoreComp Rx</div>
+                <div className="mt-4 space-y-4 text-slate-600">
+                  <div className="flex gap-3">
+                    <span className="mt-2 h-2.5 w-2.5 rounded-full bg-sky-500" />
+                    <p>Mail-order workers' compensation pharmacy service built around convenience.</p>
+                  </div>
+                  <div className="flex gap-3">
+                    <span className="mt-2 h-2.5 w-2.5 rounded-full bg-sky-500" />
+                    <p>Medication delivery within 48 hours for eligible prescriptions after processing.</p>
+                  </div>
+                  <div className="flex gap-3">
+                    <span className="mt-2 h-2.5 w-2.5 rounded-full bg-sky-500" />
+                    <p>No delivery cost to the patient.</p>
+                  </div>
+                  <div className="flex gap-3">
+                    <span className="mt-2 h-2.5 w-2.5 rounded-full bg-sky-500" />
+                    <p>Patients receive a call to confirm their address before shipment.</p>
+                  </div>
+                </div>
+
+                <div className="mt-8 flex flex-col gap-3 sm:flex-row">
+                  <a
+                    href="tel:4453007010"
+                    className="rounded-2xl bg-sky-600 px-6 py-4 text-center text-base font-semibold text-white shadow-lg shadow-sky-200 transition hover:-translate-y-0.5"
+                  >
+                    Call 445-300-7010
+                  </a>
+                  <a
+                    href="#how-it-works"
+                    className="rounded-2xl border border-slate-300 bg-white px-6 py-4 text-center text-base font-semibold text-slate-900 shadow-sm transition hover:-translate-y-0.5"
+                  >
+                    Learn How It Works
+                  </a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
     </div>
-  </section>
-
-  <footer>
-    © 2026 MySite. All rights reserved.
-  </footer>
-
-</body>
-</html>
+  );
+}
