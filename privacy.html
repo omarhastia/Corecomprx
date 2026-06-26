@@ -1,0 +1,715 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>CoreComp Rx | Workers' Compensation Pharmacy</title>
+    <meta
+      name="description"
+      content="CoreComp Rx is a mail-order workers' compensation pharmacy offering fast delivery, no-cost shipping to patients, and direct phone support."
+    />
+    <style>
+      * {
+        box-sizing: border-box;
+      }
+      html {
+        scroll-behavior: smooth;
+      }
+      body {
+        margin: 0;
+        font-family: Arial, Helvetica, sans-serif;
+        color: #0f172a;
+        background: #f8fafc;
+        line-height: 1.6;
+      }
+      a {
+        text-decoration: none;
+        color: inherit;
+      }
+      .container {
+        width: 100%;
+        max-width: 1180px;
+        margin: 0 auto;
+        padding: 0 24px;
+      }
+      .topbar {
+        background: #ffffff;
+        border-bottom: 1px solid #e2e8f0;
+        position: sticky;
+        top: 0;
+        z-index: 50;
+      }
+      .nav {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        gap: 20px;
+        padding: 18px 0;
+      }
+      .brand-wrap {
+        display: flex;
+        align-items: center;
+        gap: 14px;
+      }
+      .brand-logo {
+        width: 56px;
+        height: 56px;
+        object-fit: contain;
+        border-radius: 14px;
+        background: #ffffff;
+        padding: 6px;
+        box-shadow: 0 4px 14px rgba(15, 23, 42, 0.08);
+        flex: 0 0 auto;
+      }
+      .brand {
+        font-size: 28px;
+        font-weight: 700;
+        letter-spacing: -0.02em;
+        line-height: 1.05;
+      }
+      .brand-sub {
+        font-size: 14px;
+        color: #475569;
+        margin-top: 4px;
+      }
+      .nav-links {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 10px;
+        align-items: center;
+      }
+      .nav-links a {
+        padding: 10px 14px;
+        border-radius: 999px;
+        color: #334155;
+        font-size: 14px;
+      }
+      .nav-links a:hover {
+        background: #f1f5f9;
+      }
+      .nav-links .btn-dark {
+        background: #0f172a;
+        color: #ffffff;
+        font-weight: 700;
+      }
+      .hero {
+        background:
+          radial-gradient(
+            circle at top right,
+            rgba(59, 130, 246, 0.12),
+            transparent 30%
+          ),
+          radial-gradient(
+            circle at left,
+            rgba(14, 165, 233, 0.1),
+            transparent 28%
+          ),
+          #ffffff;
+        border-bottom: 1px solid #e2e8f0;
+      }
+      .hero-grid {
+        display: grid;
+        grid-template-columns: 1.15fr 0.85fr;
+        gap: 40px;
+        align-items: center;
+        padding: 64px 0 72px;
+      }
+      .badge {
+        display: inline-block;
+        background: #eff6ff;
+        border: 1px solid #bfdbfe;
+        color: #0369a1;
+        padding: 10px 16px;
+        border-radius: 999px;
+        font-size: 14px;
+        font-weight: 700;
+        margin-bottom: 18px;
+      }
+      h1 {
+        font-size: 54px;
+        line-height: 1.05;
+        margin: 0 0 20px;
+        letter-spacing: -0.03em;
+      }
+      .hero p {
+        font-size: 19px;
+        color: #475569;
+        margin: 0 0 28px;
+        max-width: 720px;
+      }
+      .button-row {
+        display: flex;
+        gap: 14px;
+        flex-wrap: wrap;
+        margin-bottom: 28px;
+      }
+      .btn {
+        display: inline-block;
+        padding: 15px 22px;
+        border-radius: 18px;
+        font-weight: 700;
+        font-size: 16px;
+      }
+      .btn-primary {
+        background: #0f172a;
+        color: #ffffff;
+      }
+      .btn-secondary {
+        background: #ffffff;
+        color: #0f172a;
+        border: 1px solid #cbd5e1;
+      }
+      .stat-grid {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 16px;
+        margin-top: 10px;
+      }
+      .card,
+      .info-card {
+        background: #ffffff;
+        border: 1px solid #e2e8f0;
+        border-radius: 26px;
+        box-shadow: 0 8px 24px rgba(15, 23, 42, 0.05);
+      }
+      .stat-card {
+        padding: 22px;
+      }
+      .stat-number {
+        font-size: 34px;
+        font-weight: 700;
+        margin-bottom: 4px;
+      }
+      .stat-label {
+        color: #475569;
+        font-size: 14px;
+      }
+      .dark-panel {
+        background: #0f172a;
+        color: #ffffff;
+        border-radius: 30px;
+        padding: 28px;
+        box-shadow: 0 20px 40px rgba(15, 23, 42, 0.12);
+      }
+      .dark-panel h3 {
+        margin-top: 0;
+        font-size: 15px;
+        text-transform: uppercase;
+        letter-spacing: 0.18em;
+        color: #7dd3fc;
+      }
+      .dark-panel ul {
+        margin: 18px 0 0;
+        padding: 0;
+        list-style: none;
+      }
+      .dark-panel li {
+        display: flex;
+        gap: 12px;
+        margin-bottom: 14px;
+        color: #e2e8f0;
+        font-size: 15px;
+      }
+      .dot {
+        width: 10px;
+        height: 10px;
+        background: #38bdf8;
+        border-radius: 50%;
+        margin-top: 8px;
+        flex: 0 0 auto;
+      }
+      .support-box {
+        margin-top: 18px;
+        background: #e0f2fe;
+        color: #0f172a;
+        border-radius: 22px;
+        padding: 22px;
+      }
+      .support-box strong {
+        display: block;
+        margin-bottom: 8px;
+      }
+      section {
+        padding: 76px 0;
+      }
+      .section-title {
+        margin-bottom: 18px;
+        color: #0369a1;
+        text-transform: uppercase;
+        letter-spacing: 0.18em;
+        font-size: 13px;
+        font-weight: 700;
+      }
+      h2 {
+        margin: 0 0 16px;
+        font-size: 40px;
+        line-height: 1.12;
+        letter-spacing: -0.02em;
+      }
+      .section-copy {
+        color: #475569;
+        font-size: 18px;
+        max-width: 760px;
+      }
+      .grid-3 {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 22px;
+        margin-top: 34px;
+      }
+      .info-card {
+        padding: 30px;
+      }
+      .info-card h3 {
+        margin: 0 0 12px;
+        font-size: 24px;
+      }
+      .info-card p {
+        margin: 0;
+        color: #475569;
+      }
+      .how-section {
+        background: #ffffff;
+        border-top: 1px solid #e2e8f0;
+        border-bottom: 1px solid #e2e8f0;
+      }
+      .how-grid {
+        display: grid;
+        grid-template-columns: 0.9fr 1.1fr;
+        gap: 36px;
+        align-items: start;
+      }
+      .steps {
+        display: grid;
+        gap: 18px;
+      }
+      .step {
+        background: #f8fafc;
+        border: 1px solid #e2e8f0;
+        border-radius: 28px;
+        padding: 24px;
+      }
+      .step-row {
+        display: flex;
+        gap: 16px;
+        align-items: flex-start;
+      }
+      .step-num {
+        width: 48px;
+        height: 48px;
+        border-radius: 16px;
+        background: #0f172a;
+        color: #ffffff;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-weight: 700;
+        font-size: 18px;
+        flex: 0 0 auto;
+      }
+      .step h3 {
+        margin: 0 0 6px;
+        font-size: 22px;
+      }
+      .step p {
+        margin: 0;
+        color: #475569;
+      }
+      .feature-band .grid-3 .info-card:first-child {
+        background: #0f172a;
+        color: #ffffff;
+      }
+      .feature-band .grid-3 .info-card:first-child p,
+      .feature-band .grid-3 .info-card:first-child .mini-label {
+        color: #cbd5e1;
+      }
+      .mini-label {
+        color: #0369a1;
+        text-transform: uppercase;
+        letter-spacing: 0.18em;
+        font-size: 13px;
+        font-weight: 700;
+        margin-bottom: 10px;
+      }
+      .faq-wrap {
+        max-width: 920px;
+        margin: 0 auto;
+      }
+      details {
+        background: #f8fafc;
+        border: 1px solid #e2e8f0;
+        border-radius: 22px;
+        padding: 22px 24px;
+        margin-top: 14px;
+      }
+      summary {
+        cursor: pointer;
+        font-weight: 700;
+        font-size: 20px;
+        list-style: none;
+      }
+      details p {
+        margin: 12px 0 0;
+        color: #475569;
+      }
+      .contact-shell {
+        overflow: hidden;
+        background: #ffffff;
+        border: 1px solid #e2e8f0;
+        border-radius: 32px;
+        box-shadow: 0 20px 40px rgba(15, 23, 42, 0.08);
+      }
+      .contact-grid {
+        display: grid;
+        grid-template-columns: 1.05fr 0.95fr;
+      }
+      .contact-left {
+        background: #0f172a;
+        color: #ffffff;
+        padding: 42px;
+      }
+      .contact-left p {
+        color: #cbd5e1;
+        max-width: 700px;
+      }
+      .contact-box-grid {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 16px;
+        margin-top: 26px;
+      }
+      .contact-box,
+      .contact-box-full {
+        background: rgba(255, 255, 255, 0.05);
+        border: 1px solid rgba(255, 255, 255, 0.1);
+        border-radius: 22px;
+        padding: 22px;
+        display: block;
+      }
+      .contact-box-label {
+        color: #7dd3fc;
+        text-transform: uppercase;
+        letter-spacing: 0.18em;
+        font-size: 12px;
+        font-weight: 700;
+        margin-bottom: 8px;
+      }
+      .contact-box-value {
+        font-size: 30px;
+        font-weight: 700;
+        line-height: 1.15;
+      }
+      .contact-box-note {
+        color: #cbd5e1;
+        font-size: 14px;
+        margin-top: 6px;
+      }
+      .contact-box-full {
+        margin-top: 16px;
+      }
+      .contact-right {
+        background: #f8fafc;
+        padding: 42px;
+      }
+      .contact-right .info-card {
+        padding: 30px;
+      }
+      .bullet {
+        display: flex;
+        gap: 12px;
+        margin: 0 0 14px;
+        color: #475569;
+      }
+      .contact-cta-row {
+        display: flex;
+        gap: 12px;
+        flex-wrap: wrap;
+        margin-top: 24px;
+      }
+      .btn-blue {
+        background: #0284c7;
+        color: #ffffff;
+      }
+      footer {
+        padding: 24px 0 40px;
+        color: #64748b;
+        font-size: 14px;
+        text-align: center;
+      }
+      @media (max-width: 980px) {
+        .hero-grid,
+        .how-grid,
+        .contact-grid,
+        .grid-3 {
+          grid-template-columns: 1fr;
+        }
+        .stat-grid,
+        .contact-box-grid {
+          grid-template-columns: 1fr;
+        }
+        h1 {
+          font-size: 40px;
+        }
+        h2 {
+          font-size: 32px;
+        }
+        .nav {
+          flex-direction: column;
+          align-items: flex-start;
+        }
+      }
+      @media (max-width: 640px) {
+        .container {
+          padding: 0 18px;
+        }
+        .hero-grid {
+          padding: 42px 0 52px;
+        }
+        section {
+          padding: 56px 0;
+        }
+        .contact-left,
+        .contact-right {
+          padding: 24px;
+        }
+        .info-card,
+        .step,
+        .dark-panel {
+          padding: 22px;
+        }
+        .contact-box-value {
+          font-size: 24px;
+        }
+        .brand-logo {
+          width: 48px;
+          height: 48px;
+        }
+        .brand {
+          font-size: 24px;
+        }
+      }
+
+      /* PDF Modal Styling */
+      .footer-link {
+        color: #64748b;
+        text-decoration: none;
+        transition: color 0.2s ease;
+      }
+      .footer-link:hover {
+        color: #0f172a;
+        text-decoration: underline;
+      }
+    </style>
+  </head>
+  <body>
+    <header class="topbar">
+      <div class="container" style="padding-top: 18px; padding-bottom: 12px">
+        <div style="display: flex; align-items: center; gap: 20px; width: 100%">
+          <!-- BRAND LINK -->
+          <a
+            href="index.html"
+            style="
+              display: flex;
+              align-items: center;
+              gap: 20px;
+              text-decoration: none;
+              color: inherit;
+              flex: 1;
+            "
+          >
+            <!-- LOGO -->
+            <img
+              src="corecomprx-logo.svg"
+              alt="CoreComp Rx logo"
+              style="
+                height: 80px;
+                width: auto;
+                border-radius: 18px;
+                background: #ffffff;
+                padding: 10px;
+                box-shadow: 0 6px 18px rgba(15, 23, 42, 0.12);
+              "
+            />
+            <!-- TEXT -->
+            <div>
+              <div
+                style="
+                  font-size: 36px;
+                  font-weight: 700;
+                  letter-spacing: -0.02em;
+                  line-height: 1;
+                "
+              >
+                CoreComp Rx
+              </div>
+              <div style="font-size: 16px; color: #475569; margin-top: 6px">
+                Workers' Compensation Pharmacy
+              </div>
+            </div>
+          </a>
+          <!-- NAV -->
+          <nav class="nav-links">
+            <a href="index.html#how-it-works">How It Works</a>
+            <a href="index.html#who-we-help">Who We Help</a>
+            <a href="index.html#faq">FAQ</a>
+            <a href="terms.html">Terms &amp; Conditions</a>
+            <a href="privacy.html">Privacy Policy</a>
+            <a href="index.html#contact" class="btn-dark">Contact Us</a>
+          </nav>
+        </div>
+      </div>
+    </header>
+    <main style="padding: 64px 0 80px; background: #f8fafc;">
+      <div class="container" style="max-width: 900px;">
+        <div
+          style="
+            background: #ffffff;
+            border: 1px solid #e2e8f0;
+            border-radius: 28px;
+            box-shadow: 0 8px 24px rgba(15, 23, 42, 0.04);
+            padding: 48px 56px;
+          "
+        >
+          <div style="color: #334155; font-size: 16px; line-height: 1.7;">
+            <h1 style="font-size: 36px; line-height: 1.1; letter-spacing: -0.02em; margin: 0 0 8px; color: #0f172a; font-weight: 700;">
+              CoreCompRx Privacy Policy
+            </h1>
+            <div style="font-size: 14px; color: #64748b; margin-bottom: 32px;">
+              <strong>Effective Date:</strong> June 26, 2026
+            </div>
+
+            <p style="font-size: 13px; color: #64748b; margin-bottom: 24px; padding: 12px 18px; background: #f8fafc; border-left: 4px solid #cbd5e1; border-radius: 4px;">
+              CoreCompRx | 390 Lincoln Ave, Ste B3, Hatboro, PA 19040 | 445-300-7010
+            </p>
+
+            <p>This Privacy Policy describes how CoreCompRx ("CoreCompRx," "we," "our," or "us") collects, uses, discloses, and protects information about patients and website visitors. It also explains our SMS/text messaging practices for patient communication, including address and patient information verification.</p>
+            <p>This policy is intended for website publication and SMS carrier registration. It is not a substitute for legal advice or for any separate HIPAA Notice of Privacy Practices that CoreCompRx may be required to provide as a covered health care provider.</p>
+
+            <h2 style="font-size: 20px; font-weight: 700; margin-top: 36px; margin-bottom: 12px; color: #0f172a; border-bottom: 1px solid #e2e8f0; padding-bottom: 8px;">
+              1. Information We Collect
+            </h2>
+            <p>We collect information that you provide directly to us, information generated through pharmacy services, and limited technical information when you use our website or communicate with us. The information we may collect includes:</p>
+            <ul style="margin: 0 0 20px; padding-left: 24px; list-style-type: disc;">
+              <li style="margin-bottom: 8px;"><strong>Contact information:</strong> name, mailing address, delivery address, phone number, email address, and preferred communication method.</li>
+              <li style="margin-bottom: 8px;"><strong>Patient and prescription information:</strong> date of birth, medication information, prescribing provider information, allergies or clinical notes you provide, refill information, insurance information, and other information needed to provide pharmacy services.</li>
+              <li style="margin-bottom: 8px;"><strong>Verification information:</strong> information used to confirm your identity, address, contact details, prescription status, or delivery information.</li>
+              <li style="margin-bottom: 8px;"><strong>Payment and billing information:</strong> payment status, billing details, insurance claims information, and related transaction records. We do not intentionally store full payment card numbers on our website unless handled by a secure payment processor.</li>
+              <li style="margin-bottom: 8px;"><strong>SMS/text messaging information:</strong> your mobile phone number, opt-in status, message content, message delivery status, date/time of messages, and opt-out requests.</li>
+              <li style="margin-bottom: 8px;"><strong>Website and technical information:</strong> IP address, browser type, device information, pages visited, referring pages, and similar information collected through cookies or similar technologies when applicable.</li>
+            </ul>
+
+            <h2 style="font-size: 20px; font-weight: 700; margin-top: 36px; margin-bottom: 12px; color: #0f172a; border-bottom: 1px solid #e2e8f0; padding-bottom: 8px;">
+              2. How We Use Information
+            </h2>
+            <p>CoreCompRx uses personal information for pharmacy operations, patient service, compliance, and communication. We may use information to:</p>
+            <ul style="margin: 0 0 20px; padding-left: 24px; list-style-type: disc;">
+              <li style="margin-bottom: 8px;">Provide pharmacy services, fill prescriptions, process refills, coordinate medication delivery or pickup, and communicate with prescribers, insurers, caregivers, and authorized representatives as appropriate.</li>
+              <li style="margin-bottom: 8px;">Verify patient identity, address, delivery details, prescription information, insurance information, or other information needed to provide accurate pharmacy services.</li>
+              <li style="margin-bottom: 8px;">Send service-related SMS/text messages, phone calls, emails, or other communications about prescription status, address verification, information verification, refill coordination, delivery coordination, appointment or care coordination, account questions, and customer service.</li>
+              <li style="margin-bottom: 8px;">Respond to patient questions, requests, complaints, or support needs.</li>
+              <li style="margin-bottom: 8px;">Process payments, billing, insurance claims, chargebacks, and related accounting records.</li>
+              <li style="margin-bottom: 8px;">Comply with federal and state laws, pharmacy board requirements, HIPAA and other health privacy obligations, fraud prevention, security, auditing, and recordkeeping obligations.</li>
+              <li style="margin-bottom: 8px;">Maintain and improve our website, services, security, and internal operations.</li>
+            </ul>
+
+            <h2 style="font-size: 20px; font-weight: 700; margin-top: 36px; margin-bottom: 12px; color: #0f172a; border-bottom: 1px solid #e2e8f0; padding-bottom: 8px;">
+              3. SMS/Text Messaging Program
+            </h2>
+            <p>By providing your mobile phone number and consenting to receive text messages from CoreCompRx, you agree that CoreCompRx may send SMS/text messages to the mobile number you provided. Messages may include patient address verification, patient information verification, prescription or refill status, delivery or pickup coordination, customer service communications, and other pharmacy service-related messages.</p>
+            <ul style="margin: 0 0 20px; padding-left: 24px; list-style-type: disc;">
+              <li style="margin-bottom: 8px;"><strong>Message frequency:</strong> Message frequency varies based on your pharmacy needs and interactions with CoreCompRx.</li>
+              <li style="margin-bottom: 8px;"><strong>Message and data rates:</strong> Message and data rates may apply depending on your mobile carrier and plan.</li>
+              <li style="margin-bottom: 8px;"><strong>Opt out:</strong> You may opt out of SMS messages at any time by replying STOP. After you send STOP, we may send one final confirmation message and then stop sending non-essential SMS messages to that number unless you opt in again.</li>
+              <li style="margin-bottom: 8px;"><strong>Help:</strong> For help, reply HELP or call CoreCompRx at 445-300-7010.</li>
+              <li style="margin-bottom: 8px;"><strong>No purchase requirement:</strong> Consent to receive SMS messages is not a condition of purchasing any goods or services.</li>
+              <li style="margin-bottom: 8px;"><strong>Alternative communication:</strong> If you opt out of SMS, we may contact you by phone, mail, portal, email, or another method where permitted and appropriate for pharmacy operations.</li>
+            </ul>
+
+            <h2 style="font-size: 20px; font-weight: 700; margin-top: 36px; margin-bottom: 12px; color: #0f172a; border-bottom: 1px solid #e2e8f0; padding-bottom: 8px;">
+              4. SMS Consent and Phone Number Privacy
+            </h2>
+            <p>CoreCompRx does not sell, rent, or share SMS opt-in consent, mobile phone numbers, or SMS/text messaging data with third parties or affiliates for their marketing or promotional purposes.</p>
+            <p>SMS consent is not shared with third parties or affiliates for marketing purposes. We may share limited information with service providers that help us operate our messaging program, such as telecommunications carriers, messaging platforms, and technology vendors, solely as needed to deliver messages, maintain security, keep records, and support our pharmacy operations. These service providers are not permitted to use SMS consent or mobile information for their own marketing.</p>
+            <p>We may also disclose information when required or permitted by law, including to comply with legal process, pharmacy regulations, HIPAA, fraud prevention, patient safety, audits, or law enforcement requests.</p>
+
+            <h2 style="font-size: 20px; font-weight: 700; margin-top: 36px; margin-bottom: 12px; color: #0f172a; border-bottom: 1px solid #e2e8f0; padding-bottom: 8px;">
+              5. How We Share Information
+            </h2>
+            <p>We do not sell patient personal information. We may disclose personal information only as needed for lawful business, pharmacy, health care, operational, and compliance purposes, including:</p>
+            <ul style="margin: 0 0 20px; padding-left: 24px; list-style-type: disc;">
+              <li style="margin-bottom: 8px;"><strong>Health care and pharmacy operations:</strong> to prescribers, health care providers, insurance plans, pharmacy benefit managers, delivery providers, laboratories, caregivers, or authorized representatives when appropriate for treatment, payment, or health care operations.</li>
+              <li style="margin-bottom: 8px;"><strong>Service providers:</strong> to vendors that support our pharmacy, billing, delivery, technology, website, messaging, security, records, or customer service functions.</li>
+              <li style="margin-bottom: 8px;"><strong>Legal and regulatory purposes:</strong> to government agencies, courts, audits, pharmacy boards, law enforcement, or other parties when required or permitted by law.</li>
+              <li style="margin-bottom: 8px;"><strong>Business transactions:</strong> in connection with a merger, acquisition, financing, reorganization, or transfer of assets, subject to applicable privacy and health information protections.</li>
+              <li style="margin-bottom: 8px;"><strong>With your direction or authorization:</strong> when you ask us to share information or provide written authorization where required.</li>
+            </ul>
+
+            <h2 style="font-size: 20px; font-weight: 700; margin-top: 36px; margin-bottom: 12px; color: #0f172a; border-bottom: 1px solid #e2e8f0; padding-bottom: 8px;">
+              6. HIPAA and Protected Health Information
+            </h2>
+            <p>As a pharmacy, CoreCompRx may collect, use, and disclose protected health information (PHI). We handle PHI in accordance with applicable federal and state health privacy laws, including HIPAA when applicable. Uses and disclosures of PHI may include treatment, payment, health care operations, public health reporting, regulatory compliance, patient safety, and other uses or disclosures allowed or required by law.</p>
+            <p>Patients may have rights under HIPAA and applicable state law, which may include the right to request access to certain health information, request amendments, request restrictions, request confidential communications, receive an accounting of certain disclosures, and receive a copy of a Notice of Privacy Practices. To exercise privacy rights, contact CoreCompRx using the contact information below.</p>
+
+            <h2 style="font-size: 20px; font-weight: 700; margin-top: 36px; margin-bottom: 12px; color: #0f172a; border-bottom: 1px solid #e2e8f0; padding-bottom: 8px;">
+              7. Cookies and Website Technologies
+            </h2>
+            <p>Our website may use cookies, analytics tools, or similar technologies to operate the website, improve performance, understand visitor activity, and protect security. You may be able to adjust cookie settings through your browser. Some website functions may not work properly if cookies are disabled.</p>
+
+            <h2 style="font-size: 20px; font-weight: 700; margin-top: 36px; margin-bottom: 12px; color: #0f172a; border-bottom: 1px solid #e2e8f0; padding-bottom: 8px;">
+              8. Data Security
+            </h2>
+            <p>We use reasonable administrative, technical, and physical safeguards designed to protect personal information and health information. No website, transmission method, or electronic storage system is completely secure, and we cannot guarantee absolute security. Please do not send highly sensitive information by SMS unless requested and appropriate for pharmacy operations, because text messaging may not be fully secure depending on your device, carrier, and settings.</p>
+
+            <h2 style="font-size: 20px; font-weight: 700; margin-top: 36px; margin-bottom: 12px; color: #0f172a; border-bottom: 1px solid #e2e8f0; padding-bottom: 8px;">
+              9. Data Retention
+            </h2>
+            <p>We retain personal information and pharmacy records for as long as needed to provide services, comply with legal and regulatory requirements, resolve disputes, maintain security, and enforce agreements. Retention periods may vary depending on the type of information and applicable pharmacy, health care, tax, and business recordkeeping requirements.</p>
+
+            <h2 style="font-size: 20px; font-weight: 700; margin-top: 36px; margin-bottom: 12px; color: #0f172a; border-bottom: 1px solid #e2e8f0; padding-bottom: 8px;">
+              10. Your Choices
+            </h2>
+            <ul style="margin: 0 0 20px; padding-left: 24px; list-style-type: disc;">
+              <li style="margin-bottom: 8px;">You may opt out of SMS messages by replying STOP.</li>
+              <li style="margin-bottom: 8px;">You may request help with SMS messages by replying HELP or calling 445-300-7010.</li>
+              <li style="margin-bottom: 8px;">You may update your contact information by contacting CoreCompRx.</li>
+              <li style="margin-bottom: 8px;">You may request privacy-related assistance or exercise available rights by contacting CoreCompRx using the information below.</li>
+            </ul>
+
+            <h2 style="font-size: 20px; font-weight: 700; margin-top: 36px; margin-bottom: 12px; color: #0f172a; border-bottom: 1px solid #e2e8f0; padding-bottom: 8px;">
+              11. Children and Minors
+            </h2>
+            <p>CoreCompRx provides pharmacy services that may involve minors through a parent, guardian, authorized representative, prescriber, or other lawful basis. We do not knowingly collect information from children through our website for marketing purposes. Information related to minor patients is handled in accordance with applicable law.</p>
+
+            <h2 style="font-size: 20px; font-weight: 700; margin-top: 36px; margin-bottom: 12px; color: #0f172a; border-bottom: 1px solid #e2e8f0; padding-bottom: 8px;">
+              12. Links to Other Websites
+            </h2>
+            <p>Our website may contain links to external websites. CoreCompRx is not responsible for the privacy practices, security, or content of third-party websites. Review the privacy policies of those websites before providing personal information.</p>
+
+            <h2 style="font-size: 20px; font-weight: 700; margin-top: 36px; margin-bottom: 12px; color: #0f172a; border-bottom: 1px solid #e2e8f0; padding-bottom: 8px;">
+              13. Changes to This Privacy Policy
+            </h2>
+            <p>We may update this Privacy Policy from time to time. Updates will be posted on our website with a revised effective date. Continued use of our website or services after an update means the updated policy applies to information collected after the effective date, to the extent permitted by law.</p>
+
+            <h2 style="font-size: 20px; font-weight: 700; margin-top: 36px; margin-bottom: 12px; color: #0f172a; border-bottom: 1px solid #e2e8f0; padding-bottom: 8px;">
+              14. Contact Us
+            </h2>
+            <p style="margin-bottom: 0;">
+              For questions about this Privacy Policy, SMS messaging, privacy rights, or CoreCompRx privacy practices, contact us at:<br>
+              CoreCompRx<br>
+              390 Lincoln Ave, Ste B3<br>
+              Hatboro, PA 19040<br>
+              Phone: 445-300-7010
+            </p>
+          </div>
+        </div>
+      </div>
+    </main>
+    <footer>
+      <div class="container">
+        © 2026 CoreComp Rx. All rights reserved. &nbsp;|&nbsp;
+        <a href="terms.html" class="footer-link">Terms &amp; Conditions</a> &nbsp;|&nbsp;
+        <a href="privacy.html" class="footer-link">Privacy Policy</a>
+      </div>
+    </footer>
+  </body>
+</html>
